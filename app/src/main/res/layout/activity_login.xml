@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_dark"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="in.trydevs.tutest.tutest.LoginActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="QUIZ BUZZ"
+        android:layout_marginBottom="60dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="40dp" />
+
+    <EditText
+        android:id="@+id/loginMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8dp"
+        android:background="@color/white"
+        android:hint="@string/mail"
+        android:inputType="textEmailAddress"
+        android:lines="1"
+        android:padding="@dimen/_8dp" />
+
+    <EditText
+        android:id="@+id/loginPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8dp"
+        android:background="@color/white"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:lines="1"
+        android:padding="@dimen/_8dp" />
+
+
+    <com.dd.processbutton.iml.ActionProcessButton
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8dp"
+        android:textColor="@android:color/white"
+        android:background="@color/accent"
+        android:padding="@dimen/_8dp"
+        android:text="@string/login"
+        custom:pb_colorComplete="@color/green_complete"
+        custom:pb_colorNormal="@color/blue_normal"
+        custom:pb_colorPressed="@color/blue_pressed"
+        custom:pb_colorProgress="@color/purple_progress"
+        custom:pb_textComplete="@string/Success"
+        custom:pb_textProgress="@string/Loading" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/login_forgot_password"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/forgot_password"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text" />
+
+        <TextView
+            android:id="@+id/login_signup"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/signup"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/text" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 import java.util.List;
 
-import in.trydevs.tutest.tutest.extras.MyApplication;
-
 /**
  * Created by kid on 05/01/17.
  */
@@ -14,13 +12,13 @@ import in.trydevs.tutest.tutest.extras.MyApplication;
 public class LoginResult implements Parcelable {
 
     String result;
-    List<Details> details;
+    List<UserDetails> details;
 
     public String getResult() {
         return result;
     }
 
-    public List<Details> getDetails() {
+    public List<UserDetails> getDetails() {
         return details;
     }
 
@@ -28,12 +26,10 @@ public class LoginResult implements Parcelable {
         this.result = result;
     }
 
-    public void setDetails(List<Details> details) {
+    public void setDetails(List<UserDetails> details) {
         this.details = details;
     }
 
-    public LoginResult() {
-    }
 
     @Override
     public int describeContents() {
@@ -46,12 +42,15 @@ public class LoginResult implements Parcelable {
         dest.writeTypedList(this.details);
     }
 
-    protected LoginResult(Parcel in) {
-        this.result = in.readString();
-        this.details = in.createTypedArrayList(Details.CREATOR);
+    public LoginResult() {
     }
 
-    public static final Creator<LoginResult> CREATOR = new Creator<LoginResult>() {
+    protected LoginResult(Parcel in) {
+        this.result = in.readString();
+        this.details = in.createTypedArrayList(UserDetails.CREATOR);
+    }
+
+    public static final Parcelable.Creator<LoginResult> CREATOR = new Parcelable.Creator<LoginResult>() {
         @Override
         public LoginResult createFromParcel(Parcel source) {
             return new LoginResult(source);
@@ -62,9 +61,4 @@ public class LoginResult implements Parcelable {
             return new LoginResult[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return MyApplication.getJson(this);
-    }
 }

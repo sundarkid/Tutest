@@ -72,9 +72,6 @@ public class Question implements Parcelable {
     }
 
 
-    public Question() {
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -91,6 +88,9 @@ public class Question implements Parcelable {
         dest.writeString(this.ans);
     }
 
+    public Question() {
+    }
+
     protected Question(Parcel in) {
         this.qno = in.readInt();
         this.question = in.readString();
@@ -101,7 +101,7 @@ public class Question implements Parcelable {
         this.ans = in.readString();
     }
 
-    public static final Creator<Question> CREATOR = new Creator<Question>() {
+    public static final Parcelable.Creator<Question> CREATOR = new Parcelable.Creator<Question>() {
         @Override
         public Question createFromParcel(Parcel source) {
             return new Question(source);

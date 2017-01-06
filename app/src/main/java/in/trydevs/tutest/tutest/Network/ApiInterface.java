@@ -1,7 +1,7 @@
 package in.trydevs.tutest.tutest.Network;
 
-import in.trydevs.tutest.tutest.DataClasses.Question;
 import in.trydevs.tutest.tutest.DataClasses.LoginResult;
+import in.trydevs.tutest.tutest.DataClasses.QuestionResult;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
     @GET("getQuestions")
-    Call<Question> getQuestions(@Query("uid") String UserId);
+    Call<QuestionResult> getQuestions(@Query("uid") String UserId);
 
     @GET("login")
     Call<LoginResult> login(@Query("email") String email, @Query("password") String password);

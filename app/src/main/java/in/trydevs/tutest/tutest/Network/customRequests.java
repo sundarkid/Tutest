@@ -2,9 +2,14 @@ package in.trydevs.tutest.tutest.Network;
 
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import in.trydevs.tutest.tutest.DataClasses.LoginResult;
-import in.trydevs.tutest.tutest.DataClasses.Question;
+import in.trydevs.tutest.tutest.DataClasses.QuestionResult;
 import in.trydevs.tutest.tutest.extras.MyApplication;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,27 +26,27 @@ public class CustomRequests {
     String responseData = "";
     LoginResult loginResult;
 
-    public String getQuestions(String uid){
-        Call<Question> resultQuestionCall = apiInterface.getQuestions(uid);
+    public String getQuestions(String uid) {
+        Call<QuestionResult> resultQuestionCall = apiInterface.getQuestions(uid);
 
-        resultQuestionCall.enqueue(new Callback<Question>() {
+        resultQuestionCall.enqueue(new Callback<QuestionResult>() {
             @Override
-            public void onResponse(Call<Question> call, Response<Question> response) {
-
+            public void onResponse(Call<QuestionResult> call, Response<QuestionResult> response) {
+                Toast.makeText(MyApplication.getContext(), response.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<Question> call, Throwable t) {
-                Toast.makeText(MyApplication.getContext(),t.toString(),Toast.LENGTH_LONG).show();
+            public void onFailure(Call<QuestionResult> call, Throwable t) {
+                Toast.makeText(MyApplication.getContext(), t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
-        while (responseData.equalsIgnoreCase(""));
+        while (responseData.equalsIgnoreCase("")) ;
 
         return responseData;
     }
 
-    public LoginResult login(String email, String password){
+    public LoginResult login(String email, String password) {
 
         Call<LoginResult> loginResultCall = apiInterface.login(email, password);
 
@@ -54,15 +59,23 @@ public class CustomRequests {
 
             @Override
             public void onFailure(Call<LoginResult> call, Throwable t) {
-                Toast.makeText(MyApplication.getContext(),t.toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(MyApplication.getContext(), t.toString(), Toast.LENGTH_LONG).show();
                 responseData = t.toString();
             }
         });
 
-        while (loginResult == null || responseData.equalsIgnoreCase(""));
+        while (loginResult == null || responseData.equalsIgnoreCase("")) ;
 
         return loginResult;
 
+    }
+
+    public static String GET(OkHttpClient client, HttpUrl url) throws IOException {
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        okhttp3.Response response = client.newCall(request).execute();
+        return response.body().string();
     }
 
 }

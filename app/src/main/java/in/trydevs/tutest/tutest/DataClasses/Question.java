@@ -13,6 +13,7 @@ public class Question implements Parcelable {
     private String question;
     private String option1, option2, option3, option4;
     private String ans;
+    private int answerId;
 
 
     public String getAns() {
@@ -31,6 +32,10 @@ public class Question implements Parcelable {
         return option1;
     }
 
+    public int getAnswerId() {
+        return answerId;
+    }
+
     public String getOption2() {
         return option2;
     }
@@ -41,6 +46,10 @@ public class Question implements Parcelable {
 
     public String getOption4() {
         return option4;
+    }
+
+    public void setAnswerId(int answerId) {
+        this.answerId = answerId;
     }
 
     public void setAns(String ans) {
@@ -72,6 +81,9 @@ public class Question implements Parcelable {
     }
 
 
+    public Question() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -86,9 +98,7 @@ public class Question implements Parcelable {
         dest.writeString(this.option3);
         dest.writeString(this.option4);
         dest.writeString(this.ans);
-    }
-
-    public Question() {
+        dest.writeInt(this.answerId);
     }
 
     protected Question(Parcel in) {
@@ -99,9 +109,10 @@ public class Question implements Parcelable {
         this.option3 = in.readString();
         this.option4 = in.readString();
         this.ans = in.readString();
+        this.answerId = in.readInt();
     }
 
-    public static final Parcelable.Creator<Question> CREATOR = new Parcelable.Creator<Question>() {
+    public static final Creator<Question> CREATOR = new Creator<Question>() {
         @Override
         public Question createFromParcel(Parcel source) {
             return new Question(source);

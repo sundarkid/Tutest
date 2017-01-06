@@ -80,6 +80,20 @@ public class Question implements Parcelable {
         this.option4 = option4;
     }
 
+    public String getSelectedAnswer() {
+        switch (answerId) {
+            case 0:
+                return option1;
+            case 1:
+                return option2;
+            case 2:
+                return option3;
+            case 3:
+                return option4;
+        }
+        return "";
+    }
+
 
     public Question() {
     }

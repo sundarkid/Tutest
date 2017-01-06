@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,18 +27,16 @@
                     android:id="@+id/fragment_create_question_question"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/editText_question"
-                    android:hint="@string/questionHint" />
+                    android:hint="@string/questionHint"
+                    android:textSize="20dp" />
 
-                <ImageView
-                    android:id="@+id/imageViewQuestion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="invisible" />
+
             </com.andexert.library.RippleView>
 
             <com.andexert.library.RippleView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="fill"
                 app:rv_color="@color/accent">
 
                 <RadioGroup
@@ -52,27 +51,34 @@
 
                     <RadioButton
                         android:id="@+id/fragment_create_question_radio_0"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:textSize="15dp" />
 
                     <RadioButton
                         android:id="@+id/fragment_create_question_radio_1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:textSize="15dp" />
+
 
                     <RadioButton
                         android:id="@+id/fragment_create_question_radio_2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:textSize="15dp" />
+
 
                     <RadioButton
                         android:id="@+id/fragment_create_question_radio_3"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:textSize="15dp" />
+
                 </RadioGroup>
             </com.andexert.library.RippleView>
         </LinearLayout>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dd.processbutton.iml.ActionProcessButton;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     EditText email, password;
     ActionProcessButton login;
     LoginResult loginResult;
+    TextView signUp;
 
     // Getting api for service
     ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -44,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.loginMail);
         password = (EditText) findViewById(R.id.loginPass);
         login = (ActionProcessButton) findViewById(R.id.loginButton);
+        signUp = (TextView) findViewById(R.id.login_signup);
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SignuUpActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Setting the configuration for the button
         login.setMode(ActionProcessButton.Mode.ENDLESS);

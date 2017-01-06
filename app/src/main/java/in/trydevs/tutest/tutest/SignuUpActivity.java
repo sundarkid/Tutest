@@ -1,54 +1,48 @@
 package in.trydevs.tutest.tutest;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.IOException;
 
-import in.trydevs.tutest.tutest.DataClasses.QuestionResult;
-import in.trydevs.tutest.tutest.extras.FileNames;
-import in.trydevs.tutest.tutest.extras.MyApplication;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
-public class DashboardActivity extends AppCompatActivity {
+public class SignuUpActivity extends AppCompatActivity {
 
-
-    Button takeTest;
-    SharedPreferences preferences;
+    EditText name, userName, password, email, age;
+    Button submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_signu_up);
 
-        preferences = getSharedPreferences(FileNames.LOGIN_PREFS, MODE_PRIVATE);
-        if (!preferences.getBoolean(FileNames.IS_LOGGED_IN, false)) {
-            Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+        name = (EditText) findViewById(R.id.editTextName);
+        userName = (EditText) findViewById(R.id.editTextUserName);
+        password = (EditText) findViewById(R.id.editTextPasssword);
+        email = (EditText) findViewById(R.id.editTextEmail);
+        age = (EditText) findViewById(R.id.editTextAge);
+        submit = (Button) findViewById(R.id.buttonSignUp);
 
-        takeTest = (Button) findViewById(R.id.buttonTakeTest);
-
-        takeTest.setOnClickListener(new View.OnClickListener() {
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyAsyncTask asyncTask = new MyAsyncTask();
-                asyncTask.execute(preferences.getString(FileNames.UID, "0"));
+                new MyAsyncTaskRegistration().execute(email.getText().toString(), password.getText().toString(), userName.getText().toString());
             }
         });
 
 
     }
 
-    public class MyAsyncTask extends AsyncTask<String, Void, String> {
+    public class MyAsyncTaskRegistration extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... strings) {
@@ -60,8 +54,10 @@ public class DashboardActivity extends AppCompatActivity {
                     .addPathSegment("v1")
                     .addPathSegment("student")
                     .addPathSegment("app")
-                    .addPathSegment("getQuestions")//adds "/pathSegment" at the end of hostname
-                    .addQueryParameter("uid", strings[0])
+                    .addPathSegment("newRegistration")//adds "/pathSegment" at the end of hostname
+                    .addQueryParameter("email", strings[0])
+                    .addQueryParameter("password", strings[1])
+                    .addQueryParameter("username", strings[2])
                     .build();
 
             try {
@@ -85,14 +81,11 @@ public class DashboardActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            //Toast.makeText(DashboardActivity.this, s, Toast.LENGTH_SHORT).show();
-            QuestionResult questionResult = MyApplication.getGson().fromJson(s, QuestionResult.class);
-            //Toast.makeText(DashboardActivity.this, questionResult.toString(), Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(DashboardActivity.this, TestActivity.class);
-            intent.putExtra("result", questionResult);
+            //QuestionResult questionResult = MyApplication.getGson().fromJson(s, QuestionResult.class);
+            Toast.makeText(SignuUpActivity.this, s, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(SignuUpActivity.this, MainActivity.class);
             startActivity(intent);
         }
 
     }
-
 }

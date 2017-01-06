@@ -18,4 +18,5 @@ public interface ApiInterface {
     @GET("login")
     Call<LoginResult> login(@Query("email") String email, @Query("password") String password);
 
+
 }
